@@ -3,10 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" href="/images/icon.png">
   <title> Jikan Manga</title>
 </head>
 <body>
-  
+  {{>header}}
+      <p>Search for information on your favourite manga!</p>
+  <div class="main">
+    <form>
+        <input placeholder="Naruto">
+       
+          <button  class="btn effect01" target="_blank"><span>Search</span></button>
+      
+</div>
+    <p id="title"></p>
+    <img id="image" src="">
+    <p id="chapters"></p>
+    <p id= "rating"></p>
+  {{>footer}}
+
+  <script src="/js/manga-app.js"></script>
 </body>
 </html>

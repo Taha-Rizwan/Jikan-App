@@ -13,6 +13,7 @@ animeForm.addEventListener('submit', (e) => {
   episodes.textContent = ''
   rating.textContent = ''
   image.src = ''
+  image.style.display='none'
   fetch('anime?animeSearch=' + anime).then((response) => {
     response.json().then((data) => {
       if (!data.title) {

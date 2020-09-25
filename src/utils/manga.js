@@ -1,7 +1,7 @@
 const request = require('request')
 
-const Anime = (animeSearch, callback) => {
-  const url = "https://api.jikan.moe/v3/search/anime?q=" + encodeURIComponent(animeSearch) 
+const Manga = (mangaSearch, callback) => {
+  const url = "https://api.jikan.moe/v3/search/manga?q=" + encodeURIComponent(mangaSearch) 
 
   request({url: url, json: true}, (error, {body}) =>{
     if(error) {
@@ -11,19 +11,13 @@ const Anime = (animeSearch, callback) => {
     } else {
       callback(undefined, {
         title: (body.results[0].title),
-         episodes:(body.results[0].episodes),
+        chapters:(body.results[0].chapters),
         score: (body.results[0].score),
         image_url: (body.results[0].image_url)
       })
-
-  //     const info = {
-  //      title: (body.results[0].title),
-  //   episodes:(body.results[0].episodes),
-  //   image: (body.results[0].image_url)
-  // }
     }
   })
 }
 
 
-module.exports = Anime 
+module.exports = Manga

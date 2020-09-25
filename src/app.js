@@ -2,7 +2,8 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const Anime = require('./utils/jikan')
+const Anime = require('./utils/anime')
+const Manga = require('./utils/manga')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -25,6 +26,28 @@ app.get('', (req,res) => {
     title: "Jikan Anime",
     name: 'Taha Rizwan'
   })
+})
+
+
+app.get('/mangas', (req,res) => {
+  if(!req.query.mangaSearch) {
+    return res.send(
+      {error: 'Please provide an anime!'}
+    )
+  }
+  Manga(req.query.mangaSearch, ((error, {title, chapters,score,image_url}) => {
+    if (error) {
+      return res.send(error)
+    }
+    res.send({
+      title,
+      chapters,
+      score,
+      image_url,
+      mangaSearch: req.query.mangaSearch
+    })
+  }))
+ 
 })
 
 app.get('/anime', (req,res) => {
@@ -54,6 +77,14 @@ app.get('/about', (req,res) => {
     name: 'Taha Rizwan'
   })
 })
+ 
+app.get('/manga', (req,res) => {
+  res.render('manga', {
+    title: 'About me',
+    name: 'Taha Rizwan'
+  })
+})
+
 
 app.get('/help', (req,res) => {
   res.render('help', {
